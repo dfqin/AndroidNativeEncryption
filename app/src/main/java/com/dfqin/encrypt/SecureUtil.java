@@ -25,11 +25,7 @@ public class SecureUtil {
     }
 
     public static String getChannel() {
-        return "Win";
-    }
-
-    public static boolean isDebug() {
-        return BuildConfig.DEBUG;
+        return "huawei";
     }
 
     public static void showToast(String tips) {

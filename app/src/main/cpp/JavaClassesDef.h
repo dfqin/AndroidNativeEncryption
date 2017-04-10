@@ -25,9 +25,6 @@
 #define SecureUtil_showToast_Method "showToast"
 #define SecureUtil_showToast_Param "(Ljava/lang/String;)V"
 
-#define SecureUtil_isDebug_Method "isDebug"
-#define SecureUtil_isDebug_Param "()Z"
-
 #define SecureUtil_encryptData_Method "encryptData"
 #define SecureUtil_encryptData_Param "(Landroid/content/Context;[B)[B"
 

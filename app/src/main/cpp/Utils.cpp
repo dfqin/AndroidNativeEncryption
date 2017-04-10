@@ -9,6 +9,7 @@ AppEnv appEnv;
 BaseClasses baseClasses;
 bool gIsValid;
 bool isDebug;
+void initDebug(JNIEnv *env);
 
 /**
  * 初始化一些App配置信息
@@ -27,13 +28,31 @@ void initAppEnv(JNIEnv *env) {
     jstring channel = (jstring)env->CallStaticObjectMethod(baseClasses.jniUtilClass, methodGetChannel);
     string strChannel = jstring2String(env, channel);
 
-    jmethodID methodIsDebug = env->GetStaticMethodID(baseClasses.jniUtilClass, SecureUtil_isDebug_Method, SecureUtil_isDebug_Param);
-    isDebug = env->CallStaticBooleanMethod(baseClasses.jniUtilClass, methodIsDebug);
+    initDebug(env);
 
     appEnv.deviceID = strDeviceId;
     appEnv.appVersion = strAppVersion;
     appEnv.appChannel = strChannel;
 
+}
+
+void initDebug(JNIEnv *env) {
+    char name[30] = PACKAGE_FRONT;
+    const char* last = PACKAGE_END;
+    const char* clazzName = ".BuildConfig";
+    strcat(name, last); //拼接
+    strcat(name, clazzName);
+    for (int i = 0; i < 30; i++) {
+        if (name[i] == '\0') {
+            break;
+        }
+        if (name[i] == '.') {
+            name[i] = '/';
+        }
+    }
+    jclass clazz = env->FindClass(name);
+    jfieldID fieldId = env->GetStaticFieldID(clazz, "DEBUG", "Z");
+    isDebug = env->GetStaticBooleanField(clazz, fieldId);
 }
 
 string jstring2String(JNIEnv* env, jstring str) {
