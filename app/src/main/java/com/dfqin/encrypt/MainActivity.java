@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private String javaEncode(String str) {
         try {
-            byte[] key = MD5Util.toByte(geneKey());
+            byte[] key = MD5Util.toByte(getKey());
             SecretKeySpec skeySpec = new SecretKeySpec(key, "AES");
             Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
 
@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private String javaDecode(String str) {
         try {
             byte[] deData = Base64.decode(str, Base64.DEFAULT);
-            byte[] key = MD5Util.toByte(geneKey());
+            byte[] key = MD5Util.toByte(getKey());
             SecretKeySpec skeySpec = new SecretKeySpec(key, "AES");
             Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
 
@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public String javaSign(String param) {
-        String salt = geneKey();
+        String salt = getSalt();
         String key = salt + param + salt;
         String sign = null;
         try {
@@ -133,7 +133,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return SecureUtil.getSign(this, param);
     }
 
-    private String geneKey() {
+    private String getKey() {
+        return "appKey" + SecureUtil.getDeviceId() + "appKey";
+    }
+
+    private String getSalt() {
         return SecureUtil.getDeviceId() + "appKey" + SecureUtil.getDeviceId();
     }
 
