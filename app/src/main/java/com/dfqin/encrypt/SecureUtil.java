@@ -8,12 +8,21 @@ import android.widget.Toast;
  */
 
 public class SecureUtil {
-    native public static byte[] encryptData(Context context, byte[] data);
-    native public static byte[] decryptData(Context context, byte[] data);
-    native public static String getSign(Context context, String data);
 
     static {
         System.loadLibrary("native-lib");
+    }
+
+    public static byte[] encryptData(byte[] data) {
+        return encryptData(BaseApplication.getInstance(), data);
+    }
+
+    public static byte[] decryptData(byte[] data) {
+        return decryptData(BaseApplication.getInstance(), data);
+    }
+
+    public static String getSign(String data) {
+        return getSign(BaseApplication.getInstance(), data);
     }
 
     public static String getDeviceId() {
@@ -31,4 +40,8 @@ public class SecureUtil {
     public static void showToast(String tips) {
         Toast.makeText(BaseApplication.getInstance(), tips, Toast.LENGTH_SHORT).show();
     }
+
+    native private static byte[] encryptData(Context context, byte[] data);
+    native private static byte[] decryptData(Context context, byte[] data);
+    native private static String getSign(Context context, String data);
 }

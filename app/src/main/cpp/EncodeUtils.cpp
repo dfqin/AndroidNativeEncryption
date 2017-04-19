@@ -47,7 +47,7 @@ jbyteArray EncodeUtils::encryptData(JNIEnv *env, jbyteArray& data, int type) {
     initKey(key);
 
     int lenOri = env->GetArrayLength(data); //源数据长度
-    jbyte* jData = env->GetByteArrayElements(data, 0); //TODO need free?
+    jbyte* jData = env->GetByteArrayElements(data, 0);
 
     uint8_t padding = KEY_LEN - lenOri % KEY_LEN;
     int lenOffset = lenOri + padding;  //用来加密的数据长度必须是16的倍数,不够时补齐

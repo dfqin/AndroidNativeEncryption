@@ -117,20 +117,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private String nativeEncode(String str) {
-        byte[] enData = SecureUtil.encryptData(this, str.getBytes());
+        byte[] enData = SecureUtil.encryptData(str.getBytes());
         String result = new String(Base64.encode(enData, Base64.DEFAULT));
         return result;
     }
 
     private String nativeDecode(String str) {
         byte[] deData = Base64.decode(str, Base64.DEFAULT);
-        byte[] oriData = SecureUtil.decryptData(this, deData);
+        byte[] oriData = SecureUtil.decryptData(deData);
         String oriStr = new String(oriData);
         return oriStr;
     }
 
     private String nativeSign(String param) {
-        return SecureUtil.getSign(this, param);
+        return SecureUtil.getSign(param);
     }
 
     private String getKey() {
