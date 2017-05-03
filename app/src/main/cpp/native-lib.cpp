@@ -8,6 +8,7 @@
 #include "EnvChecker.h"
 #include "JavaClassesDef.h"
 #include "EncodeUtils.h"
+#include <sys/ptrace.h>
 
 
 static jbyteArray encrypt(JNIEnv *env, jclass instance, jobject contextObject, jbyteArray data) {
@@ -50,6 +51,9 @@ static JNINativeMethod nMethods[] = {
 };
 
 JNIEXPORT jint JNICALL JNI_OnLoad (JavaVM* vm,void* reserved){
+
+    //防止动态调试
+    ptrace(PTRACE_TRACEME, 0, 0, 0);
 
     JNIEnv* env = NULL;
     jint result=-1;
