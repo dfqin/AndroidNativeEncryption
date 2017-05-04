@@ -32,7 +32,7 @@ jstring EnvChecker::getSign(JNIEnv* env, jobject context, BaseClasses classes) {
     return sign;
 }
 
-//检查签名(截取了 [8, 15) (len-24, len-8) 两段比较)
+//检查签名(截取了 [8, 15] [len-24, len-8] 两段比较)
 bool EnvChecker::checkSign(JNIEnv* env, jobject context, BaseClasses classes) {
 
     jstring signString = getSign(env, context, classes);
