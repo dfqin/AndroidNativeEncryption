@@ -2,6 +2,7 @@
 // Created by dfqin on 2017/3/9.
 //
 #include <jni.h>
+#include "cstring"
 
 #ifndef WINANDROID_ENCODEUTILS_H
 #define WINANDROID_ENCODEUTILS_H
