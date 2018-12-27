@@ -29,6 +29,10 @@ public class SecureUtil {
         return "deviceId";
     }
 
+    public static boolean isDebug() {
+        return BuildConfig.DEBUG;
+    }
+
     public static String getAppVersion() {
         return "1.0";
     }

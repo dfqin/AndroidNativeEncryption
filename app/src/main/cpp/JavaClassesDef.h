@@ -16,6 +16,9 @@
 #define SecureUtil_getDeviceId_Method  "getDeviceId"
 #define SecureUtil_getDeviceId_Param  "()Ljava/lang/String;"
 
+#define SecureUtil_isDebug_Method  "isDebug"
+#define SecureUtil_isDebug_Param  "()Z"
+
 #define SecureUtil_getAppVersion_Method "getAppVersion"
 #define SecureUtil_getAppVersion_Param "()Ljava/lang/String;"
 
