@@ -16,9 +16,27 @@ android {
             }
         }
     }
+
+    signingConfigs {
+        debug {
+            storeFile file('../dfqin.keystore')
+            keyAlias "dfqin"
+            keyPassword "dfqin123"
+            storePassword "dfqin123"
+        }
+        release {
+            storeFile file('../dfqin.keystore')
+            keyAlias "dfqin"
+            keyPassword "dfqin123"
+            storePassword "dfqin123"
+            v2SigningEnabled false
+        }
+    }
+
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
+            signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -27,6 +45,9 @@ android {
             path "CMakeLists.txt"
         }
     }
+
+
+
 }
 
 dependencies {
